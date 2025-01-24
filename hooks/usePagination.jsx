@@ -7,7 +7,7 @@ const usePagination = (data,itemsPerPage) => {
     
     const totalPages=Math.ceil(data.length/itemsPerPage);
 
-    const updatePaginatedData = (newData) => {
+    const updatePaginatedData = (newData) => { // function to update the pagination and to slice as well
         setPaginatedData(
           newData.slice(
             (currentPage -1) * itemsPerPage,
@@ -17,7 +17,7 @@ const usePagination = (data,itemsPerPage) => {
       };
     
 
-    const changePage=(direction)=>{
+    const changePage=(direction)=>{   // to change the pageNumber for a table
         if(direction=='next' && currentPage<totalPages){
             setCurrentPage((prev)=>prev+1);
         }
