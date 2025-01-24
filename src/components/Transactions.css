@@ -1,0 +1,71 @@
+/* Styling for the container */
+.transactions-container {
+  margin-top: 4rem;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Styling for the heading */
+.transactions-heading {
+  font-size: 24px;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 15px;
+  color:#333;
+}
+
+/* Styling for the table */
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.transactions-table th,
+.transactions-table td {
+  padding: 12px;
+  text-align: left;
+  
+  border-right: 1px solid #eae1e1;
+}
+
+.transactions-table th {
+  background-color: #dddddd;
+  font-weight: bolder;
+  color: black;
+  border-bottom: 2px solid #ddd;
+}
+
+.transactions-table tr {
+  background-color: #fff;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.transactions-table-ContentRow:hover {
+    background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+/* Styling for the button */
+.transactions-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.transactions-button:hover {
+  background-color: #0056b3;
+}

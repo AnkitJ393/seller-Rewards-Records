@@ -1,0 +1,12 @@
+.App{
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.Rewards{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
