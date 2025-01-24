@@ -14,7 +14,7 @@ const Transactions = ({ totalPages, transactionData,currentPage ,changePage}) =>
             <th>Purchase Date</th>
             <th>Product Purchased</th>
             <th>Price</th>
-            <th>Rewards Points</th>
+            <th>Reward Points</th>
           </tr>
         </thead>
         <tbody>

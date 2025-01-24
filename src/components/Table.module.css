@@ -49,12 +49,13 @@
 .buttonContainer{
   display: flex;
   flex-direction: row;
+  width: auto;
+  justify-content: space-around;
 }
   .button {
     display: block;
-    margin: 20px auto;
     padding: 10px 10px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     color: #fff;
     background-color: #024996;

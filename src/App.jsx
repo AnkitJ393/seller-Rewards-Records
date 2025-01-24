@@ -61,6 +61,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Merchant Reward Records</h1>
       <div className="Rewards">
         <UserMonthly
           userRewards={totalRewardsPagination.paginatedData}

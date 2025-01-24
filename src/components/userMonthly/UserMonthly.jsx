@@ -10,7 +10,7 @@ const UserMonthly = ({ userRewards,changePage,currentPage,totalPages }) => {
         <thead>
           <tr>
             <th>Customer Id</th>
-            <th>Name</th>
+            <th>Customer Name</th>
             <th>Month</th>
             <th>Reward Points</th>
           </tr>

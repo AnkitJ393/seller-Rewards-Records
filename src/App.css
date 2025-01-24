@@ -4,6 +4,7 @@
   flex-direction: column;
   align-content: center;
   flex-wrap: wrap;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .Rewards{
   display: flex;
