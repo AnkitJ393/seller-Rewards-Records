@@ -2,6 +2,7 @@
 
 This project is all about displaying the **Rewards** earned by each customer in the **last 3 months**, sorted from the oldest to the latest date. 🚀
 
+![alt text](image.png)
 ---
 
 ## 📊 What's Inside?
