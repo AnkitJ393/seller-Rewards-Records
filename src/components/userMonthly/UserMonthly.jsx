@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '../Table.module.css';
 
 const UserMonthly = ({ userRewards,changePage,currentPage,totalPages }) => {
@@ -20,7 +19,7 @@ const UserMonthly = ({ userRewards,changePage,currentPage,totalPages }) => {
             <tr className={styles.rowHover} key={userReward.transaction_Id}>
               <td>{userReward.customerId}</td>
               <td>{userReward.customer_name}</td>
-              <td>{userReward.purchase_date.slice(4, 8)}</td>
+              <td>{userReward.purchase_date.slice(4, 8) + " " + userReward.purchase_date.slice(-4)}</td>
               <td>{userReward.rewardPoints}</td>
             </tr>
           ))}

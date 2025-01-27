@@ -38,7 +38,7 @@ function App() {
   useEffect(() => {
     const rewardPointsPerTransaction = calculateRewardPoints();
     transactionPagination.updatePaginatedData(rewardPointsPerTransaction);
-  }, [transactionPagination.currentPage]);
+  }, [transactionPagination, transactionPagination.currentPage]);
 
   // Initialize combined user monthly rewards on component mount
   useEffect(() => {
@@ -55,12 +55,12 @@ function App() {
   // Update User Monthly table pagination on page or data change
   useEffect(() => {
     updatePagination(combinedRewardsPagination, combineUserMonthRewards);
-  }, [combineUserMonthRewards, combinedRewardsPagination.currentPage]);
+  }, [combineUserMonthRewards, combinedRewardsPagination, combinedRewardsPagination.currentPage]);
 
   // Update Total Rewards table pagination on page or data change
   useEffect(() => {
     updatePagination(totalRewardsPagination, combineUserMonthRewards);
-  }, [combineUserMonthRewards, totalRewardsPagination.currentPage]);
+  }, [combineUserMonthRewards, totalRewardsPagination, totalRewardsPagination.currentPage]);
 
   // Extract pagination props for cleaner component usage
   const paginationProps = (pagination) => ({
