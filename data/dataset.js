@@ -44,6 +44,6 @@ const generateFakeData = (numEntries = 20) => {
   return data;
 };
 
-const data = generateFakeData(100);
+const data = generateFakeData(90);
 
 export default data;

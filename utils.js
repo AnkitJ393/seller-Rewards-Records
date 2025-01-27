@@ -19,7 +19,7 @@ export const calculateRewards = (price) => {
     });
   };
   
-  export const removingDuplicateCustomers = (userData) => {
+  export const totalRewardsUser = (userData) => {
     return userData.reduce((acc, curr) => {
       const {
         customerId,
@@ -49,6 +49,47 @@ export const calculateRewards = (price) => {
       return acc;
     }, []);
   };
+
+  export const aggregatingMonthlyRewardsForCustomer = (userData) => {
+
+    return Object.values(
+      userData.reduce((acc, curr) => {
+        const {
+          customerId,
+          customer_name,
+          transaction_Id,
+          purchase_date,
+          product_purchased,
+          price,
+          rewardPoints,
+        } = curr;
+  
+        // Generate a unique key based on customerId and monthYear
+        const monthYear = purchase_date.slice(4, 7) + " " + purchase_date.slice(-4);
+        const key = `${customerId}_${monthYear}`;
+  
+        // Check if key already exists in the accumulator
+        if (!acc[key]) {
+          acc[key] = {
+            transaction_Id,
+            customerId,
+            customer_name,
+            purchase_date,
+            product_purchased,
+            price: parseFloat(price),
+            rewardPoints,
+          };
+        } else {
+          // Update the existing entry
+          acc[key].price += parseFloat(price);
+          acc[key].rewardPoints += rewardPoints;
+        }
+  
+        return acc;
+      }, {})
+    );
+  };
+  
   
   export const sortDataByDate = (data) => {
     return data.sort((a, b) => {

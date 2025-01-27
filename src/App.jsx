@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
-import data from '../data/dataset'; // Importing dataset
-import './App.css'; // Importing styles
+import data from '../data/dataset';
+import './App.css'; 
 import UserMonthly from './components/userMonthly/UserMonthly';
 import TotalRewards from './components/totalRewards/TotalRewards';
 import Transactions from './components/transactions/Transactions';
-import { removingDuplicateCustomers, rewardPointsData, sortDataByDate } from '../utils'; // Utility functions
+import { aggregatingMonthlyRewardsForCustomer,totalRewardsUser, rewardPointsData, sortDataByDate } from '../utils'; // Utility functions
 import usePagination from '../hooks/usePagination'; // Custom pagination hook
 
 function App() {
-  const [combineUserMonthRewards, setCombineUserMonthRewards] = useState([]); // State for aggregated rewards
+  const [combineUserMonthRewards, setCombineUserMonthRewards] = useState([]); 
+  const [totalRewardsPerUser,setTotalRewardsPerUser]=useState([]);
 
   // Items per page for each table
   const transactionsPerPage = 10;
@@ -17,7 +18,7 @@ function App() {
   // Pagination for tables
   const transactionPagination = usePagination(data, transactionsPerPage);
   const combinedRewardsPagination = usePagination(combineUserMonthRewards, userMonthlyPerPage);
-  const totalRewardsPagination = usePagination(combineUserMonthRewards, userMonthlyPerPage);
+  const totalRewardsPagination = usePagination(totalRewardsPerUser, userMonthlyPerPage);
 
   // Calculate reward points for each transaction and sort by date
   const calculateRewardPoints = () => {
@@ -29,16 +30,18 @@ function App() {
   // Initialize combined user monthly rewards by removing duplicates and sorting
   const initializeCombineUserMonthRewards = () => {
     const rewardPointsPerTransaction = calculateRewardPoints();
-    const rewards = removingDuplicateCustomers(rewardPointsPerTransaction).filter(Boolean);
-    sortDataByDate(rewards);
-    setCombineUserMonthRewards(rewards);
+    const userMonthlyRewards = sortDataByDate(aggregatingMonthlyRewardsForCustomer(rewardPointsPerTransaction).filter(Boolean));
+    const totalRewards =sortDataByDate(totalRewardsUser(rewardPointsPerTransaction).filter(Boolean));
+      
+    setCombineUserMonthRewards(userMonthlyRewards);
+    setTotalRewardsPerUser(totalRewards);
   };
 
   // Update transaction table data when the current page changes
   useEffect(() => {
     const rewardPointsPerTransaction = calculateRewardPoints();
     transactionPagination.updatePaginatedData(rewardPointsPerTransaction);
-  }, [transactionPagination, transactionPagination.currentPage]);
+  }, [ transactionPagination.currentPage]);
 
   // Initialize combined user monthly rewards on component mount
   useEffect(() => {
@@ -55,12 +58,12 @@ function App() {
   // Update User Monthly table pagination on page or data change
   useEffect(() => {
     updatePagination(combinedRewardsPagination, combineUserMonthRewards);
-  }, [combineUserMonthRewards, combinedRewardsPagination, combinedRewardsPagination.currentPage]);
+  }, [combineUserMonthRewards, combinedRewardsPagination.currentPage]);
 
   // Update Total Rewards table pagination on page or data change
   useEffect(() => {
-    updatePagination(totalRewardsPagination, combineUserMonthRewards);
-  }, [combineUserMonthRewards, totalRewardsPagination, totalRewardsPagination.currentPage]);
+    updatePagination(totalRewardsPagination, totalRewardsPerUser);
+  }, [totalRewardsPerUser, totalRewardsPagination.currentPage]);
 
   // Extract pagination props for cleaner component usage
   const paginationProps = (pagination) => ({
@@ -75,13 +78,13 @@ function App() {
       <div className="Rewards">
         {/* User Monthly Rewards Table */}
         <UserMonthly
-          userRewards={totalRewardsPagination.paginatedData}
-          {...paginationProps(totalRewardsPagination)}
+          userRewards={combinedRewardsPagination.paginatedData}
+          {...paginationProps(combinedRewardsPagination)}
         />
         {/* Total Rewards Table */}
         <TotalRewards
-          totalRewardsPerUser={combinedRewardsPagination.paginatedData}
-          {...paginationProps(combinedRewardsPagination)}
+          totalRewardsPerUser={totalRewardsPagination.paginatedData}
+          {...paginationProps(totalRewardsPagination)}
         />
       </div>
       {/* Transactions Table */}
