@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 
 const usePagination = (data,itemsPerPage) => {
 
-    const [currentPage,setCurrentPage]=useState(1);
+    const [currentPage,setCurrentPage]=useState(1); 
     const [paginatedData,setPaginatedData]=useState([]);
     
     const totalPages=Math.ceil(data.length/itemsPerPage);
@@ -30,4 +30,4 @@ const usePagination = (data,itemsPerPage) => {
     return {currentPage,totalPages,changePage,paginatedData,updatePaginatedData}
 }
 
-export default usePagination
+export default usePagination;

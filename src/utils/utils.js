@@ -1,24 +1,37 @@
 
-export const calculateRewards = (price) => {
-    let total = 0;
-    if (price > 100) {
-      total = (price - 100) * 2 + 50;
-    } else if (price > 50) {
-      total = price - 50;
-    }
+ const sortDataByDate = (data) => {
+  return data.sort((a, b) => {
+    const dateA = new Date(a.purchase_date);
+    const dateB = new Date(b.purchase_date);
+
+    return dateA - dateB;
+  });
+};
+
+ const calculateRewards = (price) => {
+  const actualPrice=Math.floor(price);
+  let total = 0;
+  if (actualPrice > 100) {
+    total = (actualPrice - 100) * 2 + 50;
+  } else if (actualPrice > 50) {
+    total = actualPrice - 50;
+  }
     return total;
   };
   
-  export const rewardPointsData = (rewardsData) => {
-    return rewardsData.map((rewardData) => {
+// Rewards points per Transaction 
+  export const rewardPointsDataPerTransaction = (rewardsData) => {
+    const calculatedRewardsPerTransaction= rewardsData.map((rewardData) => {
       const rewardPoint = calculateRewards(parseInt(rewardData.price));
       return {
         ...rewardData,
         rewardPoints: rewardPoint,
       };
     });
+    return sortDataByDate(calculatedRewardsPerTransaction);
   };
   
+  // Function to Calculate Total Rewards Every User has Earned till date in last 3 months
   export const totalRewardsUser = (userData) => {
     return userData.reduce((acc, curr) => {
       const {
@@ -50,8 +63,9 @@ export const calculateRewards = (price) => {
     }, []);
   };
 
-  export const aggregatingMonthlyRewardsForCustomer = (userData) => {
 
+  // Function to Calculate Monthly Rewards of Each User , using a unique key of CustomerID and Month
+  export const aggregatingMonthlyRewardsForCustomer = (userData) => {
     return Object.values(
       userData.reduce((acc, curr) => {
         const {
@@ -91,12 +105,4 @@ export const calculateRewards = (price) => {
   };
   
   
-  export const sortDataByDate = (data) => {
-    return data.sort((a, b) => {
-      const dateA = new Date(a.purchase_date);
-      const dateB = new Date(b.purchase_date);
-  
-      return dateA - dateB;
-    });
-  };
   

@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'; // Use correct import for faker-js
 
+//  This file is not supposed to be used only requied to be used when needed to Generate new data and put it in the Data.json
 const generateFakeData = (numEntries = 20) => {
   const data = [];
   const now = new Date();
@@ -44,6 +45,8 @@ const generateFakeData = (numEntries = 20) => {
   return data;
 };
 
+
 const data = generateFakeData(90);
 
+console.log(data)
 export default data;

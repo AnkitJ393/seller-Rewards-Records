@@ -48,14 +48,14 @@
   
 .buttonContainer{
   display: flex;
-  flex-direction: row;
-  width: auto;
+  height: 40px;
+  margin-top: 8px;
   justify-content: space-around;
 }
   .button {
     display: block;
-    padding: 10px 10px;
     font-size: 14px;
+    width: 5rem;
     font-weight: bold;
     color: #fff;
     background-color: #024996;
@@ -69,3 +69,14 @@
     background-color: #0776ec;
   }
   
+  button:disabled {
+    background-color: #cccccc; 
+    color: #666666;           
+    cursor: not-allowed;      
+  }
+
+  button:disabled:hover {
+    background-color: #cccccc;
+    color: #666666;           
+    cursor: not-allowed;       
+  }
