@@ -1,4 +1,4 @@
-import './Table.css';
+import './Tables/Table.css';
 import PropTypes from 'prop-types';
 
 

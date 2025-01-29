@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import usePagination from "../hooks/usePagination";
 import { userMonthlyPerPage } from "../utils/constants";
-import UserMonthly from "../components/UserMonthly";
+import UserMonthly from "../components/Tables/UserMonthly";
 import PropTypes from "prop-types";
 import { aggregatingMonthlyRewardsForCustomer } from "../utils/utils";
 
@@ -30,10 +30,10 @@ const UserMonthlyPage = ({transactionData}) => {
   return (
     loading ? 'Loading...' : (
         <UserMonthly
-        userRewards={userMonthlyPagination.paginatedData}
-        currentPage={userMonthlyPagination.currentPage}
-        totalPages={userMonthlyPagination.totalPages}
-        changePage={userMonthlyPagination.changePage}
+            userRewards={userMonthlyPagination.paginatedData}
+            currentPage={userMonthlyPagination.currentPage}
+            totalPages={userMonthlyPagination.totalPages}
+            changePage={userMonthlyPagination.changePage}
         />
       )
     );

@@ -9,6 +9,9 @@
 };
 
  const calculateRewards = (price) => {
+  if (isNaN(price) || price === null || price === undefined) {
+    return 0; 
+  }
   const actualPrice=Math.floor(price);
   let total = 0;
   if (actualPrice > 100) {
@@ -22,7 +25,7 @@
 // Rewards points per Transaction 
   export const rewardPointsDataPerTransaction = (rewardsData) => {
     const calculatedRewardsPerTransaction= rewardsData.map((rewardData) => {
-      const rewardPoint = calculateRewards(parseInt(rewardData.price));
+      const rewardPoint = calculateRewards(rewardData.price);
       return {
         ...rewardData,
         rewardPoints: rewardPoint,
@@ -79,7 +82,9 @@
         } = curr;
   
         // Generate a unique key based on customerId and monthYear
-        const monthYear = purchase_date.slice(4, 7) + " " + purchase_date.slice(-4);
+        const date = new Date(purchase_date);
+        const monthYear = `${date.toLocaleString('en-US', { month: 'short' })} ${date.getFullYear()}`; // Example: "Nov 2024"
+  
         const key = `${customerId}_${monthYear}`;
   
         // Check if key already exists in the accumulator
@@ -90,12 +95,12 @@
             customer_name,
             purchase_date,
             product_purchased,
-            price: parseFloat(price),
+            price: price,
             rewardPoints,
           };
         } else {
           // Update the existing entry
-          acc[key].price += parseFloat(price);
+          acc[key].price += price;
           acc[key].rewardPoints += rewardPoints;
         }
   

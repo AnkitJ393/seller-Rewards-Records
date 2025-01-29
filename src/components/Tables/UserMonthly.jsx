@@ -1,6 +1,7 @@
-import Button from './Button';
+import Button from '../Button';
 import  './Table.css';
 import PropTypes from "prop-types";
+import {format} from 'date-fns'
 
 const UserMonthly = ({ userRewards,changePage,currentPage,totalPages }) => {
 
@@ -19,10 +20,10 @@ const UserMonthly = ({ userRewards,changePage,currentPage,totalPages }) => {
         <tbody>
           {userRewards.map((userReward) => (
             <tr className='rowHover' key={userReward.transaction_Id}>
-              <td>{userReward.customerId}</td>
+              <td className="number-align">{userReward.customerId}</td>
               <td>{userReward.customer_name}</td>
-              <td>{userReward.purchase_date.slice(4, 8) + " " + userReward.purchase_date.slice(-4)}</td>
-              <td>{userReward.rewardPoints}</td>
+              <td>{format(new Date(userReward.purchase_date),'MMM yyyy')}</td>
+              <td className="number-align">{userReward.rewardPoints}</td>
             </tr>
           ))}
         </tbody>

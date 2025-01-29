@@ -7,7 +7,6 @@
   .tableHeading {
     font-size: 24px;
     font-weight: bold;
-    text-align: center;
     margin-bottom: 15px;
     color: #333;
   }
@@ -24,7 +23,6 @@
   .table th,
   .table td {
     padding: 12px;
-    text-align: left;
     border-right: 1px solid #eae1e1;
   }
   
@@ -39,6 +37,10 @@
     background-color: #fff;
     color: #333;
     border-bottom: 1px solid #ddd;
+  }
+
+  .number-align{
+    text-align: right;
   }
   
   .rowHover:hover {

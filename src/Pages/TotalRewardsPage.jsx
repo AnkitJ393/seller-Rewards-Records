@@ -3,7 +3,7 @@ import usePagination from "../hooks/usePagination";
 import PropTypes from "prop-types";
 import { totalRewardsPerPage } from "../utils/constants";
 import { totalRewardsUser } from "../utils/utils";
-import TotalRewards from "../components/TotalRewards";
+import TotalRewards from "../components/Tables/TotalRewards";
 
 const TotalRewardsPage = ({transactionData}) => {
     const [totalRewardsPerUser,setTotalRewardsPerUser]=useState([]);

@@ -5,26 +5,35 @@ import {  rewardPointsDataPerTransaction } from './utils/utils';
 import TransactionPage from './Pages/TransactionPage';
 import UserMonthlyPage from './Pages/UserMonthlyPage';
 import TotalRewardsPage from './Pages/TotalRewardsPage';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   const [transactionData,setTransactionData]=useState([]);
+  const [error,setError]=useState(null);
+  const [loading,setLoading]=useState(true);
 
   useEffect(() => {
     const getTransactions=async ()=>{
+     
       try {
         const data=await fetchTransactions(); 
         const rewardPointsPerTransaction = rewardPointsDataPerTransaction(data)  // adding the rewards points earned per transaction according to the price
         setTransactionData(rewardPointsPerTransaction);
         
-      } catch (error) {
-        throw new Error(error); 
+      } catch(error) {
+        setError(`Failed to fetch transaction data.    ${error}`);
+      } finally {
+        setLoading(false);
       }
     }
     getTransactions();
   }, []);
 
+  if (loading) return <div className="loading">Loading transactions...</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
+    <ErrorBoundary>
     <div className="App">
       <h1>Merchant Reward Records</h1>
       <div className="Rewards">
@@ -39,6 +48,7 @@ function App() {
         transactionData={transactionData}
       />
     </div>
+    </ErrorBoundary>
   );
 }
 

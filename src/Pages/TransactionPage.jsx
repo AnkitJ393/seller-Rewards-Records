@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types"; 
 import usePagination from "../hooks/usePagination";
 import { transactionsPerPage } from "../utils/constants";
-import Transactions from "../components/Transactions";
+import Transactions from "../components/Tables/Transactions";
 
 const TransactionPage = ({ transactionData }) => {
   const [loading, setLoading] = useState(true);

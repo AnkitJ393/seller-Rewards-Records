@@ -1,6 +1,6 @@
 
-import Button from './Button';
-import  './Table.css';
+import Button from '../Button';
+import './Table.css'
 import PropTypes from 'prop-types';
 
 const TotalRewards = ({ totalRewardsPerUser,changePage,currentPage,totalPages }) => {
@@ -18,7 +18,7 @@ const TotalRewards = ({ totalRewardsPerUser,changePage,currentPage,totalPages })
           {totalRewardsPerUser.map((totalRewards, index) => (
             <tr className='rowHover' key={index} >
               <td>{totalRewards.customer_name}</td>
-              <td>{totalRewards.rewardPoints}</td>
+              <td className="number-align">{totalRewards.rewardPoints}</td>
             </tr>
           ))}
         </tbody>

@@ -36,9 +36,9 @@ const generateFakeData = (numEntries = 20) => {
       transaction_Id: faker.string.uuid(),
       customerId: customer.customerId,
       customer_name: customer.customerName,
-      purchase_date: faker.date.between({ from: threeMonthsAgo, to: Date.now() }).toDateString(),
+      purchase_date: faker.date.between({ from: threeMonthsAgo, to: Date.now() }).toISOString(),
       product_purchased: faker.commerce.productName(),
-      price: faker.commerce.price({ min: 0, max: 400, dec: Math.random() > 0.4 ? 0 : 2 }),
+      price: parseFloat(faker.commerce.price({ min: 0, max: 400, dec: Math.random() > 0.4 ? 0 : 2 })),
     });
   }
 
@@ -48,5 +48,4 @@ const generateFakeData = (numEntries = 20) => {
 
 const data = generateFakeData(90);
 
-console.log(data)
 export default data;

@@ -1,6 +1,7 @@
-import Button from './Button';
+import Button from '../Button';
 import './Table.css';
 import PropTypes from 'prop-types';
+import {format} from 'date-fns'
 
 const Transactions = ({ totalPages, transactionData,currentPage ,changePage}) => {
   return (
@@ -22,10 +23,10 @@ const Transactions = ({ totalPages, transactionData,currentPage ,changePage}) =>
             <tr className='rowHover' key={transaction.transaction_Id}>
               <td>{transaction.transaction_Id}</td>
               <td>{transaction.customer_name}</td>
-              <td>{transaction.purchase_date.slice(4)}</td>
+              <td>{format(new Date(transaction.purchase_date),'MMM dd yyyy')}</td>
               <td>{transaction.product_purchased}</td>
-              <td>${transaction.price}</td>
-              <td>{transaction.rewardPoints}</td>
+              <td className="number-align">${transaction.price}</td>
+              <td className="number-align">{transaction.rewardPoints}</td>
             </tr>
           ))}
         </tbody>
