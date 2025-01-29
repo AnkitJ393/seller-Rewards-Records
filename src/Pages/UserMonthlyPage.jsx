@@ -18,7 +18,7 @@ const UserMonthlyPage = ({transactionData}) => {
           setUserMonthlyRewards(aggregatingMonthlyRewardsPerUser);
           setLoading(false);
         }
-      }, [transactionData]);  // Only run when transactionData change
+      }, [transactionData]);  
       
       useEffect(() => {
         if (userMonthlyRewards.length > 0) {
