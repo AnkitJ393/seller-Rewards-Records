@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"; 
 import PropTypes from "prop-types"; 
 import usePagination from "../hooks/usePagination";
-import { transactionsPerPage } from "../utils/constants";
+import { TRANSACTION_PER_PAGE } from "../utils/constants";
 import Transactions from "../components/Tables/Transactions";
 
 const TransactionPage = ({ transactionData }) => {
   const [loading, setLoading] = useState(true);
-  const transactionPagination = usePagination(transactionData, transactionsPerPage);
+  const transactionPagination = usePagination(transactionData, TRANSACTION_PER_PAGE);
 
   useEffect(() => {
     if (transactionData.length > 0) {
-      transactionPagination.updatePaginatedData(transactionData);// function call in custom Hook to slice the data for pagination
+      transactionPagination.updatePaginatedData(transactionData); // Function call in custom Hook to slice the data for pagination
       setLoading(false);
     }
   }, [transactionPagination.currentPage, transactionData]);
@@ -31,7 +31,7 @@ TransactionPage.propTypes = {
   transactionData: PropTypes.arrayOf(
     PropTypes.shape({
       transaction_Id: PropTypes.string.isRequired,
-      customerId: PropTypes.string.isRequired,
+      customerId: PropTypes.number.isRequired,
       customer_name: PropTypes.string.isRequired,
       purchase_date: PropTypes.string.isRequired,
       product_purchased: PropTypes.string.isRequired,

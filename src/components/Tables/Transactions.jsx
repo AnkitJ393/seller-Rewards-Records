@@ -41,7 +41,7 @@ Transactions.propTypes = {
   transactionData: PropTypes.arrayOf(
     PropTypes.shape({
       transaction_Id: PropTypes.string.isRequired,
-      customerId: PropTypes.string.isRequired,
+      customerId: PropTypes.number.isRequired,
       customer_name: PropTypes.string.isRequired,
       purchase_date: PropTypes.string.isRequired,
       rewardPoints: PropTypes.number.isRequired,

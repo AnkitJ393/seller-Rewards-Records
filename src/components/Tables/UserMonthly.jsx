@@ -1,10 +1,9 @@
 import Button from '../Button';
-import  './Table.css';
+import './Table.css';
 import PropTypes from "prop-types";
-import {format} from 'date-fns'
+import { format } from 'date-fns';
 
-const UserMonthly = ({ userRewards,changePage,currentPage,totalPages }) => {
-
+const UserMonthly = ({ userRewards, changePage, currentPage, totalPages }) => {
   return (
     <div className='tableContainer'>
       <h1 className='tableHeading'>User Monthly Rewards</h1>
@@ -22,23 +21,22 @@ const UserMonthly = ({ userRewards,changePage,currentPage,totalPages }) => {
             <tr className='rowHover' key={userReward.transaction_Id}>
               <td className="number-align">{userReward.customerId}</td>
               <td>{userReward.customer_name}</td>
-              <td>{format(new Date(userReward.purchase_date),'MMM yyyy')}</td>
+              <td>{format(new Date(userReward.purchase_date), 'MMM yyyy')}</td>
               <td className="number-align">{userReward.rewardPoints}</td>
             </tr>
           ))}
         </tbody>
       </table>         
-      <Button changePage={changePage} totalPages={totalPages} currentPage={currentPage}/>
+      <Button changePage={changePage} totalPages={totalPages} currentPage={currentPage} />
     </div>
   );
 };
-
 
 UserMonthly.propTypes = {
   userRewards: PropTypes.arrayOf(
     PropTypes.shape({
       transaction_Id: PropTypes.string.isRequired,
-      customerId: PropTypes.string.isRequired,
+      customerId: PropTypes.number.isRequired,
       customer_name: PropTypes.string.isRequired,
       purchase_date: PropTypes.string.isRequired,
       rewardPoints: PropTypes.number.isRequired,
@@ -48,4 +46,5 @@ UserMonthly.propTypes = {
   currentPage: PropTypes.number.isRequired,
   totalPages: PropTypes.number.isRequired,
 };
+
 export default UserMonthly;

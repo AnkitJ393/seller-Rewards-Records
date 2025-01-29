@@ -2,7 +2,7 @@
 
 This project is all about displaying the **Rewards** earned by each customer in the **last 3 months**, sorted from the oldest to the latest date. 🚀
 
-![alt text](./images/Merchant-Rewards-Records.png)
+![alt text](./public/images/Merchant-Reward-Records.png)
 
 ---
 
@@ -11,15 +11,9 @@ We have **3 tables** to meet the requirements, and each table comes with **pagin
 
 ---
 
-## 📂 DataSet Details
-We use the **FakerJs** library to generate fake data for each customer, with some customizations to mimic real-world scenarios. Here's how it works:
-
 1. 🌀 **Repeated Customers:** An array of objects keeps track of repeated customers (as they are common in any store).
 2. 🎲 **Randomized Data:** We randomly determine if a customer is repeated or new.
 3. 🆕 **New Customer Addition:** If the customer is new, they are added to the array with a unique customer ID.
-
-👉 Check out `data/dataset.js` to see how the dataset is generated. Just specify the size of the dataset you need, and you're good to go!
-
 ---
 
 ## 🖥️ The Three Tables
@@ -69,7 +63,6 @@ To avoid redundant code, we use a **custom hook** `usePagination.jsx`. This hook
 
 ### 🛠️ Technologies Used
 - **React** for UI
-- **FakerJs** for generating fake data
 - **CSS Modules** for styling
 
 ---
