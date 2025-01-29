@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import logger from '../utils/logger';
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -8,12 +8,12 @@ class ErrorBoundary extends Component {
   }
 
   static getDerivedStateFromError(error) {
-    console.error("An error occurred:", error); 
+    logger.log(error);
   return { hasError: true }; 
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error('Error caught by ErrorBoundary:', error, errorInfo);
+    logger.error('Error caught by ErrorBoundary:', error, errorInfo);
   }
 
   render() {

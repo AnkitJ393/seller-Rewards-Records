@@ -1,3 +1,5 @@
+import logger from "../logger";
+
 /**
  * Fetches the transaction data of users from a JSON file.
  * Returns the records of transactions from the last three months.
@@ -13,7 +15,7 @@ const fetchTransactions = async () => {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error('Error fetching transactions:', error);
+      logger.error('Error fetching transactions:', error);
       throw error;
     }
   };
