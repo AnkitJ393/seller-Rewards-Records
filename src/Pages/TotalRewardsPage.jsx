@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import usePagination from "../hooks/usePagination";
 import PropTypes from "prop-types";
-import { TOTAL_REWARDS_PER_PAGE } from "../utils/constants";
+import { TOTAL_REWARDS_RECORDS_PER_PAGE } from "../utils/constants";
 import { totalRewardsUser } from "../utils/helpers";
 import TotalRewards from "../components/Tables/TotalRewards";
 
@@ -9,7 +9,7 @@ const TotalRewardsPage = ({ transactionData }) => {
   const [totalRewardsPerUser, setTotalRewardsPerUser] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  const totalRewardsPagination = usePagination(totalRewardsPerUser, TOTAL_REWARDS_PER_PAGE);
+  const totalRewardsPagination = usePagination(totalRewardsPerUser, TOTAL_REWARDS_RECORDS_PER_PAGE);
 
   useEffect(() => {
     if (transactionData.length > 0) {

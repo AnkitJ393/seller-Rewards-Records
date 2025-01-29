@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import usePagination from "../hooks/usePagination";
-import { USER_MONTHLY_PER_PAGE } from "../utils/constants";
+import { USER_MONTHLY_RECORDS_PER_PAGE } from "../utils/constants";
 import UserMonthly from "../components/Tables/UserMonthly";
 import PropTypes from "prop-types";
 import { aggregatingMonthlyRewardsForCustomer } from "../utils/helpers";
@@ -9,7 +9,7 @@ const UserMonthlyPage = ({ transactionData }) => {
   const [userMonthlyRewards, setUserMonthlyRewards] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const userMonthlyPagination = usePagination(userMonthlyRewards, USER_MONTHLY_PER_PAGE);
+  const userMonthlyPagination = usePagination(userMonthlyRewards, USER_MONTHLY_RECORDS_PER_PAGE);
 
   useEffect(() => {
     if (transactionData.length > 0) {

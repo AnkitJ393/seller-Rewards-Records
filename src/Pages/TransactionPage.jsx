@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"; 
 import PropTypes from "prop-types"; 
 import usePagination from "../hooks/usePagination";
-import { TRANSACTION_PER_PAGE } from "../utils/constants";
+import { TRANSACTIONS_PER_PAGE } from "../utils/constants";
 import Transactions from "../components/Tables/Transactions";
 
 const TransactionPage = ({ transactionData }) => {
   const [loading, setLoading] = useState(true);
-  const transactionPagination = usePagination(transactionData, TRANSACTION_PER_PAGE);
+  const transactionPagination = usePagination(transactionData, TRANSACTIONS_PER_PAGE);
 
   useEffect(() => {
     if (transactionData.length > 0) {
