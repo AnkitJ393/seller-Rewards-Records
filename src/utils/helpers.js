@@ -4,7 +4,7 @@
  * @param {Array} data - The array of data to be sorted.
  * @returns {Array} - The sorted array by purchase date.
  */
-const sortDataByDate = (data) => {
+export const sortDataByDate = (data) => {
   return data.sort((a, b) => {
     const dateA = new Date(a.purchase_date);
     const dateB = new Date(b.purchase_date);
@@ -24,14 +24,14 @@ const sortDataByDate = (data) => {
  * @param {number} price - The price of the product purchased.
  * @returns {number} - The calculated reward points for the given price.
  */
-const calculateRewards = (price) => {
+export const calculateRewards = (price) => {
   if (isNaN(price) || price === null || price === undefined) {
     return 0; 
   }
   const actualPrice = Math.floor(price);
   let total = 0;
   if (actualPrice > 100) {
-    total = (actualPrice - 100) * 2 + 50;
+    total = ((actualPrice - 100) * 2) + 50;
   } else if (actualPrice > 50) {
     total = actualPrice - 50;
   }
@@ -95,7 +95,7 @@ export const totalRewardsUser = (userData) => {
     }
 
     return acc;
-  }, []);
+  }, []).filter(Boolean);
 };
 
 /**
@@ -145,5 +145,5 @@ export const aggregatingMonthlyRewardsForCustomer = (userData) => {
 
       return acc;
     }, {})
-  );
+  ).filter(Boolean);
 };

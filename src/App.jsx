@@ -13,13 +13,6 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    /**
-     * Fetches transaction data and adds reward points per transaction.
-     * This function is called when the component mounts.
-     * 
-     * @async
-     * @function
-     */
     const getTransactions = async () => {
       try {
         const data = await fetchTransactions();

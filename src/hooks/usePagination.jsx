@@ -1,16 +1,12 @@
 import { useCallback, useMemo, useState } from 'react';
 
-const usePagination = (data, itemsPerPage) => {
+const usePagination = (data, itemsPerPage=7) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [paginatedData, setPaginatedData] = useState([]);
 
   const totalPages = useMemo(() => Math.ceil(data.length / itemsPerPage), [data, itemsPerPage]);
 
-  /**
-   * Updates the paginated data based on the current page and items per page.
-   * 
-   * @param {Array} newData - The full data array to paginate.
-   */
+ 
   const updatePaginatedData = useCallback(
     (newData) => {
       setPaginatedData(
@@ -20,11 +16,6 @@ const usePagination = (data, itemsPerPage) => {
     [currentPage, itemsPerPage]
   );
 
-  /**
-   * Changes the current page based on the direction (next or prev).
-   * 
-   * @param {string} direction - The direction to change the page, either 'next' or 'prev'.
-   */
   const changePage = useCallback(
     (direction) => {
       if (direction === 'next' && currentPage < totalPages) {

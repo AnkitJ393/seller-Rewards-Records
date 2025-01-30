@@ -67,5 +67,9 @@ To avoid redundant code, we use a **custom hook** `usePagination.jsx`. This hook
 
 ---
 
+Test-Cases
+
+![alt text](./public/images/Test-Cases.png)
+
 Hope you enjoy exploring this project! 🎉 If you have any questions or suggestions, feel free to reach out. 🤝
 
