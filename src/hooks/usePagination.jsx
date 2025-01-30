@@ -1,12 +1,11 @@
 import { useCallback, useMemo, useState } from 'react';
 
-const usePagination = (data, itemsPerPage=7) => {
+const usePagination = (data, itemsPerPage = 7) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [paginatedData, setPaginatedData] = useState([]);
 
   const totalPages = useMemo(() => Math.ceil(data.length / itemsPerPage), [data, itemsPerPage]);
 
- 
   const updatePaginatedData = useCallback(
     (newData) => {
       setPaginatedData(
@@ -27,7 +26,13 @@ const usePagination = (data, itemsPerPage=7) => {
     [currentPage, totalPages]
   );
 
-  return { currentPage, totalPages, changePage, paginatedData, updatePaginatedData };
+  return {
+    currentPage,
+    totalPages,
+    changePage,
+    paginatedData,
+    updatePaginatedData,
+  };
 };
 
 export default usePagination;
