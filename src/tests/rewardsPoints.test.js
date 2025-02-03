@@ -1,4 +1,4 @@
-import { calculateRewards, sortDataByDate, rewardPointsDataPerTransaction, totalRewardsUser, aggregatingMonthlyRewardsForCustomer } from './helpers';
+import { calculateRewards, sortDataByDate, rewardPointsDataPerTransaction, totalRewardsUser, aggregatingMonthlyRewardsForCustomer } from '../utils/helpers';
   
   describe('calculateRewards', () => {
     it('should return the correct rewards points when the price is greater than 100', () => {
