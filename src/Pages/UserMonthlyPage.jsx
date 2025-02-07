@@ -24,14 +24,16 @@ const UserMonthlyPage = ({ transactionData }) => {
     }
   }, [userMonthlyRewards, userMonthlyPagination.currentPage]);  // Only run when userMonthlyRewards or currentPage change
 
-  return loading ? 'Loading...' : (
+  return (
+    loading ? <div>Loading...</div> : (
     <UserMonthly
       userRewards={userMonthlyPagination.paginatedData}
       currentPage={userMonthlyPagination.currentPage}
       totalPages={userMonthlyPagination.totalPages}
       changePage={userMonthlyPagination.changePage}
     />
-  );
+  )
+);
 };
 
 UserMonthlyPage.propTypes = {

@@ -1,1 +1,2 @@
 export const TRANSACTIONS_PER_PAGE = 10;
+export const DEFAULT_RECORDS_PER_PAGE = 7;

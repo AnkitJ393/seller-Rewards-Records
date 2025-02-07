@@ -6,7 +6,7 @@ const Button = ({ currentPage, changePage, totalPages }) => {
     <div className='buttonContainer'>
       <button
         className='button'
-        disabled={!(currentPage > 1)} // Disable the previous button when currentPage is less than 1
+        disabled={currentPage <= 1} // Disable the previous button when currentPage is less than 1
         onClick={() => changePage('prev')}
       >
         Previous
@@ -17,7 +17,7 @@ const Button = ({ currentPage, changePage, totalPages }) => {
       <button
         className='button'
         onClick={() => changePage('next')}
-        disabled={!(currentPage < totalPages)} // Disable the Next button when currentPage exceeds totalPages
+        disabled={currentPage >= totalPages} // Disable the Next button when currentPage exceeds totalPages
       >
         Next
       </button>

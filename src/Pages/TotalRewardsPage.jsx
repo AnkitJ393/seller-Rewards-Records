@@ -25,7 +25,7 @@ const TotalRewardsPage = ({ transactionData }) => {
   }, [totalRewardsPagination.currentPage, totalRewardsPerUser]);
 
   return (
-    loading ? 'Loading...' : (
+    loading ? <div>Loading...</div> : (
       <TotalRewards 
         totalRewardsPerUser={totalRewardsPagination.paginatedData}
         currentPage={totalRewardsPagination.currentPage}

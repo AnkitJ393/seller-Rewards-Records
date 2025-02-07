@@ -16,7 +16,7 @@ const TransactionPage = ({ transactionData }) => {
   }, [transactionPagination.currentPage, transactionData]);
 
   return (
-    loading ? 'Loading...' : (
+    loading ? <div>Loading...</div> : (
       <Transactions
         transactionData={transactionPagination.paginatedData}
         currentPage={transactionPagination.currentPage}

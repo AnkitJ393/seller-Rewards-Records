@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
+import { DEFAULT_RECORDS_PER_PAGE } from '../utils/constants';
 
-const usePagination = (data, itemsPerPage = 7) => {
+const usePagination = (data, itemsPerPage = DEFAULT_RECORDS_PER_PAGE) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [paginatedData, setPaginatedData] = useState([]);
 

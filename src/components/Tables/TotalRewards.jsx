@@ -15,8 +15,8 @@ const TotalRewards = ({ totalRewardsPerUser,changePage,currentPage,totalPages })
           </tr>
         </thead>
         <tbody>
-          {totalRewardsPerUser.map((totalRewards, index) => (
-            <tr className='rowHover' key={index} >
+          {totalRewardsPerUser.map((totalRewards) => (
+            <tr className='rowHover' key={totalRewards.transaction_Id} >
               <td>{totalRewards.customer_name}</td>
               <td className="number-align">{totalRewards.rewardPoints}</td>
             </tr>
