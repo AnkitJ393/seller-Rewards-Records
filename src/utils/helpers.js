@@ -1,17 +1,27 @@
 /**
- * Sorts the given data array by purchase date in ascending order.
+ * Sorts the given data array by purchase date in descending order.
  *
  * @param {Array} data - The array of data to be sorted.
  * @returns {Array} - The sorted array by purchase date.
  */
 export const sortDataByDate = (data) => {
-  return data.sort((a, b) => {
-    const dateA = new Date(a.purchase_date);
-    const dateB = new Date(b.purchase_date);
-
-    return dateA - dateB;
+  return [...data].sort((a, b) => {
+    const dateA = new Date(a.purchase_date).getTime() || 0;
+    const dateB = new Date(b.purchase_date).getTime() || 0;
+    return dateB - dateA;
   });
 };
+
+/**
+ * Sorts the given data array by CustomerId in ascending order
+ * 
+ * @param {Array} data - The array of Data to be sorted
+ * @returns {Array} -The sorted array by customerId
+ */
+export const sortDataByCustomerId = (data) => {
+  return [...data].sort((a, b) => a.customerId - b.customerId);
+};
+
 
 /**
  * Calculates the reward points based on the given price.
@@ -55,7 +65,7 @@ export const rewardPointsDataPerTransaction = (rewardsData) => {
       rewardPoints: rewardPoint,
     };
   });
-  return sortDataByDate(calculatedRewardsPerTransaction);
+  return calculatedRewardsPerTransaction;
 };
 
 /**

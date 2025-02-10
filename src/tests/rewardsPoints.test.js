@@ -1,4 +1,4 @@
-import { calculateRewards, sortDataByDate, rewardPointsDataPerTransaction, totalRewardsUser, aggregatingMonthlyRewardsForCustomer } from '../utils/helpers';
+import { calculateRewards, sortDataByDate, rewardPointsDataPerTransaction, totalRewardsUser, aggregatingMonthlyRewardsForCustomer, sortDataByCustomerId } from '../utils/helpers';
   
   describe('calculateRewards', () => {
     it('should return the correct rewards points when the price is greater than 100', () => {
@@ -27,7 +27,7 @@ import { calculateRewards, sortDataByDate, rewardPointsDataPerTransaction, total
   });
   
   describe('sortDataByDate', () => {
-    it('should sort the data by purchase_date in ascending order', () => {
+    it('should sort the data by purchase_date in descending order', () => {
       const data = [
         {
           "transaction_Id": "90c30ffd-546d-46d8-b5a0-27b1a57de64e",
@@ -57,11 +57,49 @@ import { calculateRewards, sortDataByDate, rewardPointsDataPerTransaction, total
   
       const sortedDataByDate = sortDataByDate(data);
   
-      expect(sortedDataByDate[0].customer_name).toBe('Albertha Schneider'); // The earliest date should come first
+      expect(sortedDataByDate[0].customer_name).toBe('Joe Pfannerstill');
       expect(sortedDataByDate[1].customer_name).toBe('Theodore Hane');
-      expect(sortedDataByDate[2].customer_name).toBe('Joe Pfannerstill');
+      expect(sortedDataByDate[2].customer_name).toBe('Albertha Schneider'); // The earliest date should come last
     });
   });
+
+  describe('sortDataByCustomerId',()=>{
+    it('should sort the data by customer_Id in ascending order',()=>{
+      const data = [
+        {
+          "transaction_Id": "90c30ffd-546d-46d8-b5a0-27b1a57de64e",
+          "customerId": 10,
+          "customer_name": "Joe Pfannerstill",
+          "purchase_date": "2024-12-29T10:55:15.302Z",
+          "product_purchased": "Generic Wooden Shoes",
+          "price": 250
+        },
+        {
+          "transaction_Id": "c64298a2-0e34-41dd-b008-1f4b9ea0d677",
+          "customerId": 9,
+          "customer_name": "Albertha Schneider",
+          "purchase_date": "2024-11-24T10:48:06.599Z",
+          "product_purchased": "Oriental Bamboo Shoes",
+          "price": 128.49
+        },
+        {
+          "transaction_Id": "c881ce12-bc1a-47b7-9a19-9e0b0835d6ad",
+          "customerId": 11,
+          "customer_name": "Theodore Hane",
+          "purchase_date": "2024-12-03T05:56:09.372Z",
+          "product_purchased": "Unbranded Steel Pants",
+          "price": 176
+        }
+      ];
+
+      const sortedDataById=sortDataByCustomerId(data);
+      console.log(sortedDataById)
+      
+      expect(sortedDataById[0].customer_name).toBe('Albertha Schneider');
+      expect(sortedDataById[1].customer_name).toBe('Joe Pfannerstill');
+      expect(sortedDataById[2].customer_name).toBe('Theodore Hane');
+    })
+  })
   
   describe('rewardPointsDataPerTransaction', () => {
     it('should return transactions with calculated reward points sorted by date', () => {
@@ -94,13 +132,9 @@ import { calculateRewards, sortDataByDate, rewardPointsDataPerTransaction, total
   
       const result = rewardPointsDataPerTransaction(data);
   
-      expect(result[0].rewardPoints).toBe(106); // (128-100)*2+50 = 106
-      expect(result[1].rewardPoints).toBe(0);
-      expect(result[2].rewardPoints).toBe(350); // (250-100)*2 + 50 = 350
-  
-      expect(result[0].purchase_date).toBe('2024-11-24T10:48:06.599Z'); // Sorted by purchase_date
-      expect(result[1].purchase_date).toBe('2024-12-03T05:56:09.372Z');
-      expect(result[2].purchase_date).toBe('2024-12-29T10:55:15.302Z');
+      expect(result[0].rewardPoints).toBe(350); // (250-100)*2 + 50 = 350
+      expect(result[1].rewardPoints).toBe(106); // (128-100)*2+50 = 106
+      expect(result[2].rewardPoints).toBe(0);
     });
   });
   
