@@ -25,7 +25,7 @@ const Transactions = ({ totalPages, transactionData,currentPage ,changePage}) =>
               <td>{transaction.customer_name}</td>
               <td>{format(new Date(transaction.purchase_date),'MMM dd yyyy')}</td>
               <td>{transaction.product_purchased}</td>
-              <td className="number-align">${transaction.price}</td>
+              <td className="number-align">${transaction.price.toFixed(2)}</td>
               <td className="number-align">{transaction.rewardPoints}</td>
             </tr>
           ))}
