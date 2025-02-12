@@ -1,4 +1,4 @@
-import logger from "../logger";
+import logger from "../utils/logger";
 
 /**
  * Fetches the transaction data of users from a JSON file.
@@ -11,14 +11,18 @@ import logger from "../logger";
  */
 const fetchTransactions = async () => {
     try {
-      const response = await fetch('/dataSet/data.json');
-      const data = await response.json();
-      return data;
+        const response = await fetch('/dataSet/data.json');
+        
+        if (!response.ok) {
+            throw new Error(`Failed to fetch transactions: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data;
     } catch (error) {
-      logger.error('Error fetching transactions:', error);
-      throw error;
+        logger.error('Error fetching transactions:', error);
+        throw error;
     }
-  };
-  
-  export default fetchTransactions;
-  
+};
+
+export default fetchTransactions;
