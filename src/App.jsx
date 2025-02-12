@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import fetchTransactions from './utils/services/fetchTransactions';
+import fetchTransactions from './services/fetchTransactions';
 import './App.css';
 import { rewardPointsDataPerTransaction, sortDataByCustomerId, sortDataByDate } from './utils/helpers';
 import TransactionPage from './Pages/TransactionPage';

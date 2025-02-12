@@ -227,9 +227,9 @@
         "transaction_Id": "1aade410-7dd9-4844-93f8-9070cdf55877",
         "customerId": 4,
         "customer_name": "Bob Brown",
-        "purchase_date": "2024-12-07T17:53:57.766Z",
+        "purchase_date": "2024-11-07T17:53:57.766Z",
         "product_purchased": "Licensed Cotton Bacon",
-        "price": 225.00
+        "price": 196.00
     },
     {
         "transaction_Id": "11649849-2444-41b0-a8ab-df98d8fec19e",
