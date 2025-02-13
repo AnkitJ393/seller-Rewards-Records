@@ -7,8 +7,14 @@ import TotalRewards from "../components/Tables/TotalRewards";
 const TotalRewardsPage = ({ transactionData }) => {
   const [totalRewardsPerUser, setTotalRewardsPerUser] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  const totalRewardsPagination = usePagination(totalRewardsPerUser);
+
+  const {
+    paginatedData,
+    currentPage,
+    changePage,
+    totalPages,
+    updatePaginatedData
+  } = usePagination(totalRewardsPerUser);
 
   useEffect(() => {
     if (transactionData.length > 0) {
@@ -20,17 +26,17 @@ const TotalRewardsPage = ({ transactionData }) => {
 
   useEffect(() => {
     if (totalRewardsPerUser.length > 0) {
-      totalRewardsPagination.updatePaginatedData(totalRewardsPerUser); // Slicing the total reward per user data for pagination
+      updatePaginatedData(totalRewardsPerUser); // Slicing the total reward per user data for pagination
     }
-  }, [totalRewardsPagination.currentPage, totalRewardsPerUser]);
+  }, [currentPage, totalRewardsPerUser]);
 
   return (
     loading ? <div>Loading...</div> : (
-      <TotalRewards 
-        totalRewardsPerUser={totalRewardsPagination.paginatedData}
-        currentPage={totalRewardsPagination.currentPage}
-        changePage={totalRewardsPagination.changePage}
-        totalPages={totalRewardsPagination.totalPages}
+      <TotalRewards
+        totalRewardsPerUser={paginatedData}
+        currentPage={currentPage}
+        changePage={changePage}
+        totalPages={totalPages}
       />
     )
   );

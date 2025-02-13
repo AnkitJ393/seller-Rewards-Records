@@ -8,7 +8,13 @@ const UserMonthlyPage = ({ transactionData }) => {
   const [userMonthlyRewards, setUserMonthlyRewards] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const userMonthlyPagination = usePagination(userMonthlyRewards);
+  const {
+    paginatedData,
+    currentPage,
+    changePage,
+    totalPages,
+    updatePaginatedData
+  } = usePagination(userMonthlyRewards);
 
   useEffect(() => {
     if (transactionData.length > 0) {
@@ -20,20 +26,20 @@ const UserMonthlyPage = ({ transactionData }) => {
 
   useEffect(() => {
     if (userMonthlyRewards.length > 0) {
-      userMonthlyPagination.updatePaginatedData(userMonthlyRewards);
+      updatePaginatedData(userMonthlyRewards);
     }
-  }, [userMonthlyRewards, userMonthlyPagination.currentPage]);  // Only run when userMonthlyRewards or currentPage change
+  }, [userMonthlyRewards, currentPage]);  // Only run when userMonthlyRewards or currentPage change
 
   return (
     loading ? <div>Loading...</div> : (
-    <UserMonthly
-      userRewards={userMonthlyPagination.paginatedData}
-      currentPage={userMonthlyPagination.currentPage}
-      totalPages={userMonthlyPagination.totalPages}
-      changePage={userMonthlyPagination.changePage}
-    />
-  )
-);
+      <UserMonthly
+        userRewards={paginatedData}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        changePage={changePage}
+      />
+    )
+  );
 };
 
 UserMonthlyPage.propTypes = {
